@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <style>
+       h2 {
+            font-size: 35px;
+            font-family: Arial, Helvetica, sans-serif;
+       }
+       body {
+            text-align: center;
+            background-color: #C08497;
+            color: #FAE3E3;
+            font-weight: light;
+            font-family: Arial, Helvetica, sans-serif; 
+        }
+        #pyramid {
+            text-align: right;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+        #box {
+            margin: auto;
+            width: 40%;
+            border: hidden;
+            background-color: #FAE3E3;
+            color: #846B8A;
+            font-weight: bold;
+            border-radius: 15px;
+        }
+        #controls {
+            text-align: center;
+            background-color: #FFCAD4;
+            border-radius: 15px 15px 0px 0px;
+            padding: 10px;
+        }
+        </style>
+    </header>
+    <body>
+        <h2>Pyramid Slide</h2>
+        <div id="box">
+            <div id="controls">
+                <form> 
+                    <label>Brick Symbol:</label>
+                    <select id="char" onchange="printPyramid()">
+                        <option value="#">#</option>
+                        <option value="@">@</option>
+                        <option value="X">X</option>
+                        <option value="$">$</option>
+                    </select> 
+                    <label>How High?:</label>
+                    <input id="height" value="1" type="range" min="1" max="20" oninput="printPyramid()">
+                    <span id="counter"></span>
+                </form>
+            </div>
+            <div id="pyramid"></div>
+        </div>
+        <script>
+                function printPyramid() {
+                    var placement = document.getElementById("pyramid");
+                    var counter = document.getElementById("counter");
+                    placement.innerHTML = "";
+                    var char = document.getElementById("char").value;
+                    var height = document.getElementById("height").value;
+                    counter.innerHTML = height;
+                    for(lineCount=1; lineCount<=height; lineCount++){
+                        var rowStr = "";
+                        for(charCount=0; charCount<=lineCount; charCount++){
+                            rowStr += char;
+                        }
+                        text = document.createTextNode(rowStr);
+                        row = document.createElement("p")
+                        row.appendChild(text);
+                        placement.appendChild(row);
+                        //document.write("<br>");
+                    }
+                }
+            printPyramid();    
+            </script>
+    </body>
+</html>
